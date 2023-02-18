@@ -14,7 +14,7 @@ export default function Home() {
           alt="the fresh logo: a sliced lemon dripping with juice"
         />
         <p class="my-6">
-          En construccion
+          En construcción
         </p>
         <Counter start={3} />
       </div>
