@@ -1,11 +1,11 @@
 type Faul = {
-    points: number,
-    date: string,
-    description?: string
+  points: number
+  date: string
+  description?: string
 }
 
 export type Participant = {
-    "_id": string,
-    name: string,
-    fauls: Array<Faul>
+  _id: string
+  name: "Alvilux" | "Toca"
+  fauls: Array<Faul>
 }

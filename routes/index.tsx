@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts"
 import { getAll } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
+import { Button } from "../components/Button.tsx"
 
 export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
@@ -43,12 +44,10 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
             </a>
           </div>
           <div className="px-8 pb-16">
-            <button className="block w-full rounded-md bg-green h-[50px] text-white">
-              Alvilux
-            </button>
-            <button className="block w-full rounded-md bg-yellow h-[50px] text-white mt-4">
+            <Button variant="Alvilux">Alvilux</Button>
+            <Button variant="Toca" className="mt-4">
               Toca
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -1,12 +1,19 @@
-import { JSX } from "preact";
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { JSX } from "preact"
+import { IS_BROWSER } from "$fresh/runtime.ts"
+import { Participant } from "../types/participant.ts"
 
-export function Button(props: JSX.HTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      {...props}
-      disabled={!IS_BROWSER || props.disabled}
-      class="px-2 py-1 border(gray-100 2) hover:bg-gray-200"
-    />
-  );
+type Props = {
+  variant: Participant["name"]
+} & JSX.HTMLAttributes<HTMLButtonElement>
+
+export function Button(props: Props) {
+  const className = `${
+    props.className ? props.className + " " : ""
+  }block w-full rounded-md h-[50px] text-white ${
+    props.variant === "Alvilux" ? "bg-green" : "bg-yellow"
+  }
+  `
+
+  console.log(className)
+  return <button {...props} className={className} />
 }
