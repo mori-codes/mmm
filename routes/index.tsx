@@ -1,7 +1,8 @@
 import { Handlers, PageProps } from "$fresh/server.ts"
 import { Head } from "$fresh/runtime.ts"
 import { getAll } from "../db/participants.ts"
-import { Participant } from "../types/participant.ts"
+import { Participant } from "../types/Participant.ts"
+import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 
 export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
@@ -26,12 +27,19 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
             <p>Clasificación: </p>
             <a
               href=""
-              className="block h-[100px] w-full border-1 border-black rounded-sm shadow-md"
+              className="flex items-center justify-center h-[100px] w-full border-1 border-black rounded-sm shadow-md px-4 gap-4"
             >
-              {data[0].name}
+              <img className="w-[50px] h-[50px]" src="./trophy.svg"></img>
+              <span className="flex-grow text-2xl font-semibold">{data[0].name}</span>
+              <span>{getPointsFromParticipant(data[0])} pts</span>
             </a>
-            <a href="" className="block h-[75px] w-full border-1 bg-grey mt-2 rounded-sm">
-              {data[1].name}
+            <a
+              href=""
+              className="flex items-center justify-center  h-[75px] w-full border-1 bg-grey mt-2 rounded-sm px-4 gap-4"
+            >
+              <div className="w-[50px] h-[50px]" src="./trophy.svg"></div>
+              <span className="flex-grow font-semibold">{data[1].name}</span>
+              <span>{getPointsFromParticipant(data[1])} pts</span>
             </a>
           </div>
           <div className="px-8 pb-16">
