@@ -4,6 +4,7 @@ import { getAll } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 import { Button } from "../components/Button.tsx"
+import ModalPrompt from "../islands/ModalPrompt.tsx"
 
 export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
@@ -44,10 +45,7 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
             </a>
           </div>
           <div className="px-8 pb-16">
-            <Button variant="Alvilux">Alvilux</Button>
-            <Button variant="Toca" className="mt-4">
-              Toca
-            </Button>
+            <ModalPrompt password={Deno.env.get("PASSWORD") || Math.random().toString()} />
           </div>
         </div>
       </div>

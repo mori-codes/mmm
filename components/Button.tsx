@@ -14,6 +14,5 @@ export function Button(props: Props) {
   }
   `
 
-  console.log(className)
   return <button {...props} className={className} />
 }
