@@ -1,8 +1,6 @@
 import { Head } from "$fresh/runtime.ts"
 import Counter from "../islands/Counter.tsx"
 
-e => {}
-
 export default function Home() {
   return (
     <>
@@ -19,9 +17,9 @@ export default function Home() {
             <p>Clasificación: </p>
             <a
               href=""
-              className="block h-[100px] w-full border-1 border-black rounded-sm drop-shadow-lg"
+              className="block h-[100px] w-full border-1 border-black rounded-sm shadow-md"
             ></a>
-            <a href="" className="block h-[75px] w-full border-1 bg-grey mt-1 rounded-sm"></a>
+            <a href="" className="block h-[75px] w-full border-1 bg-grey mt-2 rounded-sm"></a>
           </div>
           <div className="px-8 pb-16">
             <button className="block w-full rounded-md bg-green h-[50px] text-white">
