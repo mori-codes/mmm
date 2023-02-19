@@ -23,13 +23,13 @@ const TwoStepsForm = ({ variant, checkPassword }: Props) => {
       <div className="flex flex-grow items-center justify-center">
         {!showForm ? (
           <div>
-            <label for="password" className="block text-2xl">
+            <label for="password" className="block text-xl">
               Contraseña:
             </label>
             <input
               type="password"
               id="password"
-              className="h-[60px] w-60 border-1 border-black px-2 mt-2 text-3xl"
+              className="h-[60px] w-60 border-1 border-black px-2 mt-2 text-xl"
               value={password}
               onChange={e => setPassword(e.currentTarget.value)}
             />
@@ -47,13 +47,13 @@ const TwoStepsForm = ({ variant, checkPassword }: Props) => {
         ) : (
           <form>
             <div>
-              <label for="faul" className="block text-2xl">
+              <label for="faul" className="block text-xl">
                 Seleccione penalización:
               </label>
               <select
                 id="faul"
                 name="faul"
-                className="h-[60px] w-full border-1 border-black px-4 mt-2 text-2xl"
+                className="h-[60px] w-full border-1 border-black px-4 mt-2 text-xl"
               >
                 <option value={3} className="text-base">
                   Falta leve +3
@@ -64,13 +64,13 @@ const TwoStepsForm = ({ variant, checkPassword }: Props) => {
               </select>
             </div>
             <div className="mt-8">
-              <label for="description" className="block text-2xl">
+              <label for="description" className="block text-xl">
                 Descripción:
               </label>
               <textarea
                 id="description"
                 name="description"
-                className="h-60 w-full border-1 border-black p-4 mt-2 text-2xl"
+                className="h-40 w-full border-1 border-black p-4 mt-2 text-xl"
               />
             </div>
             <button
