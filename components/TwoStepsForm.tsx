@@ -45,8 +45,9 @@ const TwoStepsForm = ({ variant, checkPassword }: Props) => {
             </button>
           </div>
         ) : (
-          <form>
+          <form method="POST">
             <div>
+              <input type="hidden" name="participant" value={variant} />
               <label for="faul" className="block text-xl">
                 Seleccione penalización:
               </label>

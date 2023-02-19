@@ -15,9 +15,9 @@ const baseHeaders = {
   "api-key": key ?? "",
 }
 
-const getAll: () => Promise<Array<Participant>> = async () => {
+const getAll = async (): Promise<Array<Participant>> => {
   if (!url || !key) {
-    return
+    return []
   }
 
   const config = {
@@ -32,4 +32,40 @@ const getAll: () => Promise<Array<Participant>> = async () => {
   return data.documents ?? []
 }
 
-export { getAll }
+const updateParticipant = async (
+  participant: string,
+  points: number,
+  description?: string,
+) => {
+  if (!url || !key) {
+    return []
+  }
+
+  const data = {
+    ...baseData,
+    filter: { name: participant },
+    update: {
+      $push: {
+        fauls: {
+          $each: [
+            {
+              points,
+              description,
+              date: Date.now().toString(),
+            },
+          ],
+        },
+      },
+    },
+  }
+
+  const config = {
+    method: "POST",
+    headers: baseHeaders,
+    body: JSON.stringify(data),
+  }
+
+  await fetch(`${url}/action/updateOne`, config)
+}
+
+export { getAll, updateParticipant }

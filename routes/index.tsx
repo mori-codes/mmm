@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts"
 import { Head } from "$fresh/runtime.ts"
-import { getAll } from "../db/participants.ts"
+import { getAll, updateParticipant } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 import { Button } from "../components/Button.tsx"
@@ -10,6 +10,30 @@ export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
     const participants = await getAll()
     return ctx.render(participants)
+  },
+  POST: async (req, ctx) => {
+    const formData = await req.formData()
+    const participant = formData.get("participant")
+    const points = formData.get("faul")
+    const description = formData.get("description")
+
+    if (typeof participant !== "string" || typeof points !== "string") {
+      throw new Error("Missing attributes on post request")
+    }
+
+    await updateParticipant(
+      participant,
+      Number(points),
+      description?.toString(),
+    )
+
+    // Redirect on post, so we don't send data again on reload :)
+    return new Response(null, {
+      status: 302,
+      headers: {
+        location: "/"
+      }
+    })
   },
 }
 
