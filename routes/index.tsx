@@ -1,7 +1,16 @@
+import { Handlers, PageProps } from "$fresh/server.ts"
 import { Head } from "$fresh/runtime.ts"
-import Counter from "../islands/Counter.tsx"
+import { getAll } from "../db/participants.ts"
+import { Participant } from "../types/participant.ts"
 
-export default function Home() {
+export const handler: Handlers<Array<Participant>> = {
+  GET: async (_, ctx) => {
+    const participants = await getAll()
+    return ctx.render(participants)
+  },
+}
+
+export default function Home({ data }: PageProps<Array<Participant>>) {
   return (
     <>
       <Head>
@@ -18,8 +27,12 @@ export default function Home() {
             <a
               href=""
               className="block h-[100px] w-full border-1 border-black rounded-sm shadow-md"
-            ></a>
-            <a href="" className="block h-[75px] w-full border-1 bg-grey mt-2 rounded-sm"></a>
+            >
+              {data[0].name}
+            </a>
+            <a href="" className="block h-[75px] w-full border-1 bg-grey mt-2 rounded-sm">
+              {data[1].name}
+            </a>
           </div>
           <div className="px-8 pb-16">
             <button className="block w-full rounded-md bg-green h-[50px] text-white">
