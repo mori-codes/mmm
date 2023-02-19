@@ -1,0 +1,1 @@
+Deno.env.set("PASSWORD", "template123")
