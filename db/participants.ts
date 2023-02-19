@@ -1,4 +1,4 @@
-import { Participant } from "../types/Participant.ts"
+import { Participant } from "../types/participant.ts"
 
 const url = Deno.env.get("MONGO_URL")
 const key = Deno.env.get("MONGO_API_KEY")

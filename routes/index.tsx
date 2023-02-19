@@ -1,7 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts"
 import { Head } from "$fresh/runtime.ts"
 import { getAll } from "../db/participants.ts"
-import { Participant } from "../types/Participant.ts"
+import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 
 export const handler: Handlers<Array<Participant>> = {

@@ -1,4 +1,4 @@
-import { Participant } from "../types/Participant.ts"
+import { Participant } from "../types/participant.ts"
 
 const getPointsFromParticipant = (participant: Participant) => {
   return participant.fauls.reduce((acc, faul) => {
