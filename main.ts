@@ -11,6 +11,7 @@ import twindPlugin from "$fresh/plugins/twind.ts"
 import twindConfig from "./twind.config.ts"
 
 if (Deno.env.get("PRODUCTION") !== "true") {
+  console.log("Using local environment settings: ", Deno.env.get("PRODUCTION"))
   import("./environment.ts")
 }
 
