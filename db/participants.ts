@@ -1,3 +1,4 @@
+import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 import { Participant } from "../types/participant.ts"
 
 const url = Deno.env.get("MONGO_URL")
@@ -28,8 +29,9 @@ const getAll = async (): Promise<Array<Participant>> => {
 
   const response = await fetch(`${url}/action/find`, config)
   const data = await response.json()
+  const participants: Array<Participant> = data.documents ?? []
 
-  return data.documents ?? []
+  return participants.sort((a, b) => getPointsFromParticipant(a) - getPointsFromParticipant(b))
 }
 
 const updateParticipant = async (
