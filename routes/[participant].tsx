@@ -17,6 +17,8 @@ export const handler: Handlers<Participant> = {
   },
 }
 
+const formatter = new Intl.DateTimeFormat("es-ES", {month: "long", day: "numeric"})
+
 const Participant = ({ params, data }: PageProps<Participant>) => {
   return (
     <>
@@ -36,20 +38,27 @@ const Participant = ({ params, data }: PageProps<Participant>) => {
           <p className="mt-8 mb-2 text-xl">Historial:</p>
           <div className="flex bg-black text-white font-bold">
             <div className="w-16 text-center">PTS</div>
-            <div className="w-20">Fecha</div>
+            <div className="w-28">Fecha</div>
             <div className="flex-grow">Descripción</div>
           </div>
-          {data.fauls.map(faul => (
-            <div className="flex py-4 items-center border-l border-r border-b border-black text-sm">
-              <div className="w-16 text-center flex-shrink-0">+{faul.points}</div>
-              <div className="w-20 flex-shrink-0">Fecha</div>
-              {faul.description ? (
-                <div className="flex-grow">{faul.description}</div>
-              ) : (
-                <div className="flex-grow text-grey italic">Sin descripcion</div>
-              )}
-            </div>
-          ))}
+          {data.fauls.map(faul => {
+            const date = new Date(Number(faul.date))
+            const dateString = formatter.format(date)
+
+            return (
+              <div className="flex py-4 items-center border-l border-r border-b border-black text-sm">
+                <div className="w-16 text-center flex-shrink-0">+{faul.points}</div>
+                <div className="w-28 flex-shrink-0">
+                  {dateString}
+                </div>
+                {faul.description ? (
+                  <div className="flex-grow">{faul.description}</div>
+                ) : (
+                  <div className="flex-grow text-grey italic">Sin descripcion</div>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
     </>
