@@ -1,7 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts"
 import { Head } from "$fresh/runtime.ts"
 import { get } from "../db/participants.ts"
-import { Participant } from "../types/Participant.ts"
+import { Participant } from "../types/participant.ts"
 import { Header } from "../components/Header.tsx"
 
 export const handler: Handlers<Participant> = {
