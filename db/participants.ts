@@ -34,11 +34,28 @@ const getAll = async (): Promise<Array<Participant>> => {
   return participants.sort((a, b) => getPointsFromParticipant(a) - getPointsFromParticipant(b))
 }
 
-const updateParticipant = async (
-  participant: string,
-  points: number,
-  description?: string,
-) => {
+const get = async (participant: string): Promise<Participant | undefined> => {
+  if (!url || !key) {
+    return
+  }
+
+  const data = {
+    ...baseData,
+    filter: { name: participant },
+  }
+
+  const config = {
+    method: "POST",
+    headers: baseHeaders,
+    body: JSON.stringify(data),
+  }
+
+  const response = await fetch(`${url}/action/findOne`, config)
+  const { document } = await response.json()
+  return document
+}
+
+const updateParticipant = async (participant: string, points: number, description?: string) => {
   if (!url || !key) {
     return []
   }
@@ -70,4 +87,4 @@ const updateParticipant = async (
   await fetch(`${url}/action/updateOne`, config)
 }
 
-export { getAll, updateParticipant }
+export { getAll, get, updateParticipant }

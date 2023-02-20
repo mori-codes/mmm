@@ -4,6 +4,7 @@ import { getAll, updateParticipant } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 import ModalPrompt from "../islands/ModalPrompt.tsx"
+import { Header } from "../components/Header.tsx"
 
 export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
@@ -20,18 +21,14 @@ export const handler: Handlers<Array<Participant>> = {
       throw new Error("Missing attributes on post request")
     }
 
-    await updateParticipant(
-      participant,
-      Number(points),
-      description?.toString(),
-    )
+    await updateParticipant(participant, Number(points), description?.toString())
 
     // Redirect on post, so we don't send data again on reload :)
     return new Response(null, {
       status: 302,
       headers: {
-        location: "/"
-      }
+        location: "/",
+      },
     })
   },
 }
@@ -43,15 +40,12 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
         <title>MMM Official Site</title>
       </Head>
       <div className="mx-auto max-w-screen-sm h-screen flex flex-col w-full">
-        <header className="bg-black h-[100px] flex flex-col text-center justify-center text-white w-full">
-          <h1 className="text-3xl">MMM</h1>
-          <h3 className="italic">No insult, ai aefekei</h3>
-        </header>
+        <Header />
         <div className="flex flex-col justify-between flex-grow">
           <div className="px-2 pt-[100px]">
             <p>Clasificación: </p>
             <a
-              href=""
+              href={`/${data[0].name}`}
               className="flex items-center justify-center h-[100px] w-full border-1 border-black rounded-sm shadow-md px-4 gap-4"
             >
               <img className="w-[50px] h-[50px]" src="./trophy.svg"></img>
@@ -59,7 +53,7 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
               <span>{getPointsFromParticipant(data[0])} pts</span>
             </a>
             <a
-              href=""
+              href={`/${data[1].name}`}
               className="flex items-center justify-center  h-[75px] w-full border-1 bg-grey mt-2 rounded-sm px-4 gap-4"
             >
               <div className="w-[50px] h-[50px]" src="./trophy.svg"></div>

@@ -13,6 +13,7 @@ export default {
     textColor: {
       black: "#121212",
       white: "#fff",
+      grey: "#B7B7B7",
     },
     fontFamily: {
       sans: ["Lato", "sans-serif"],
