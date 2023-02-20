@@ -3,7 +3,6 @@ import { Head } from "$fresh/runtime.ts"
 import { getAll, updateParticipant } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
-import { Button } from "../components/Button.tsx"
 import ModalPrompt from "../islands/ModalPrompt.tsx"
 
 export const handler: Handlers<Array<Participant>> = {
