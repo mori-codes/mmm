@@ -1,3 +1,14 @@
+/** 
+ * Vaya friki poniendo JSDOC
+ */
+function formatToTwoDigitString(digit: number) {
+  if (digit / 10 < 1) {
+    return `0${digit}`
+  }
+
+  return `${digit}`
+}
+
 /**
  * Calculate duration between two dates in milliseconds
  * @param date1: Date
@@ -21,9 +32,9 @@ export function formatMillisecondsToExtendedTime(milliseconds: number) {
   const hours = Math.floor(minutes / 60)
   const days = Math.floor(hours / 24)
   return {
-    days: days,
-    hours: hours % 24,
-    minutes: minutes % 60,
-    seconds: seconds % 60,
+    days: formatToTwoDigitString(days),
+    hours: formatToTwoDigitString(hours % 24),
+    minutes: formatToTwoDigitString(minutes % 60),
+    seconds: formatToTwoDigitString(seconds % 60),
   }
 }

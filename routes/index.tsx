@@ -4,6 +4,7 @@ import { getAll, updateParticipant } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 import ModalPrompt from "../islands/ModalPrompt.tsx"
+import Timer from "../islands/Timer.tsx"
 import { Header } from "../components/Header.tsx"
 
 export const handler: Handlers<Array<Participant>> = {
@@ -41,8 +42,12 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
       </Head>
       <div className="mx-auto max-w-screen-sm h-screen flex flex-col w-full">
         <Header />
-        <div className="flex flex-col justify-between flex-grow">
-          <div className="px-2 pt-[100px]">
+        <div className="flex flex-col">
+          <div className="px-2 py-4 flex items-center justify-between shadow-lg animate-slide-down bg-banner">
+            <p className="text-xl font-semibold">Empieza en:</p>
+            <Timer />
+          </div>
+          <div className="my-20 px-4">
             <p>Clasificación: </p>
             <a
               href={`/${data[0].name}`}
@@ -61,7 +66,7 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
               <span>{getPointsFromParticipant(data[1])} pts</span>
             </a>
           </div>
-          <div className="px-8 pb-16">
+          <div className="px-8">
             <ModalPrompt password={Deno.env.get("PASSWORD") || Math.random().toString()} />
           </div>
         </div>
