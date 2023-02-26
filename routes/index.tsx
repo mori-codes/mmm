@@ -44,7 +44,7 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
         <Header />
         <div className="flex flex-col">
           <div className="px-2 py-4 flex items-center justify-between shadow-lg animate-slide-down bg-banner">
-            <p className="text-xl font-semibold">Empieza en:</p>
+            <p className="text-lg font-semibold">Empieza en:</p>
             <Timer />
           </div>
           <div className="my-20 px-4">
