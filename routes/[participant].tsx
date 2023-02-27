@@ -4,6 +4,7 @@ import { get } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { Header } from "../components/Header.tsx"
 import DataChart from "../islands/DataChart.tsx"
+import { getStatisticsFromData } from "../utils/tools.ts"
 
 export const handler: Handlers<Participant> = {
   GET: async (req, ctx) => {
@@ -19,7 +20,10 @@ export const handler: Handlers<Participant> = {
 
 const formatter = new Intl.DateTimeFormat("es-ES", { month: "long", day: "numeric" })
 
-const Participant = ({ params, data }: PageProps<Participant>) => {
+const Participant = ({ data }: PageProps<Participant>) => {
+  const color = data.name === "Alvilux" ? "text-green" : "text-yellow"
+  const { severePercentage, total, worstDay } = getStatisticsFromData(data.fauls)
+
   return (
     <>
       <Head>
@@ -27,15 +31,49 @@ const Participant = ({ params, data }: PageProps<Participant>) => {
       </Head>
       <div className="mx-auto max-w-screen-sm flex flex-col w-full">
         <Header />
-        <div className="p-4 w-full max-w-full">
-          <p className="mt-8 mb-2 text-xl">Estadísticas para {data.name}:</p>
-          <div className="flex items-center justify-center h-60 bg-black w-full">
-            <p className="text-white">Se vienen cositas</p>
+        <div className="p-4 mt-2 w-full max-w-full">
+          <div>
+            <h3
+              className={`text-3xl font-bold bg-clip-text text-transparent inline ${
+                data.name === "Alvilux" ? "bg-alvilux" : "bg-toca"
+              }`}
+            >
+              {data.name}
+            </h3>
+          </div>
+          <div className="w-full flex gap-4 items-center text-sm">
+            <div>{data.fullName}</div>
+            <div>
+              <img src="/sign.svg" className="inline" /> {data.sign}
+            </div>
+            <div>
+              <img src="/people.svg" className="inline" /> {data.currentGirlfriends}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 mt-4 text-sm p-2 shadow-md">
+            <p className="text-xl w-[50%] text-center text-shadow">
+              Total de faltas: <span className={`font-bold ${color}`}>{total}</span>
+            </p>
+            <div>
+              <p className="mb-2">
+                Porcentaje graves: <span className="font-bold">{severePercentage}%</span>
+              </p>
+              <p className="mb-2">
+                Día con más faltas:{" "}
+                <span className="font-bold">
+                  {worstDay ? formatter.format(worstDay) : "Desconocido"}
+                </span>
+              </p>
+              <a href="#" className={`underline ${color}`}>
+                Ver más estadísticas &#62;
+              </a>
+            </div>
           </div>
         </div>
 
         <div className="p-4">
-          <p className="mt-8 mb-2 text-xl">Historial:</p>
+          <p className="mt-4 mb-2 text-xl">Historial:</p>
           <div className="flex bg-black text-white font-bold">
             <div className="w-16 text-center">PTS</div>
             <div className="w-28">Fecha</div>

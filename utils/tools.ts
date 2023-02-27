@@ -1,4 +1,6 @@
-/** 
+import Participant from "../routes/[participant].tsx"
+
+/**
  * Vaya friki poniendo JSDOC
  */
 function formatToTwoDigitString(digit: number) {
@@ -36,5 +38,40 @@ export function formatMillisecondsToExtendedTime(milliseconds: number) {
     hours: formatToTwoDigitString(hours % 24),
     minutes: formatToTwoDigitString(minutes % 60),
     seconds: formatToTwoDigitString(seconds % 60),
+  }
+}
+
+/**
+ * Get statistics for the participant page
+ * @param fauls: Faul[]
+ *
+ * @return object{total, severePercentage, worstDay}
+ */
+export function getStatisticsFromData(fauls: Participant["fauls"]) {
+  // We'll group fauls per date
+  const helper: Record<string, number> = {}
+  let severe = 0
+
+  for (const faul of fauls) {
+    helper[faul.date] = helper[faul.date] ? helper[faul.date] + 1 : 1
+    if (faul.points === 5) {
+      severe++
+    }
+  }
+
+  let worstDay = fauls[0] ? fauls[0].date : undefined
+  let worstDayCount = 0
+
+  for(const [day, count] of Object.entries(helper)){
+    if(count > worstDayCount){
+      worstDay = day
+      worstDayCount = count
+    }
+  }
+
+  return {
+    total: fauls.length,
+    severePercentage: Math.floor(severe * 100 / fauls.length),
+    worstDay: worstDay ? new Date(Number(worstDay)) : undefined
   }
 }
