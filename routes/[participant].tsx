@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts"
 import { get } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { Header } from "../components/Header.tsx"
+import DataChart from "../islands/DataChart.tsx"
 
 export const handler: Handlers<Participant> = {
   GET: async (req, ctx) => {
@@ -17,7 +18,7 @@ export const handler: Handlers<Participant> = {
   },
 }
 
-const formatter = new Intl.DateTimeFormat("es-ES", {month: "long", day: "numeric"})
+const formatter = new Intl.DateTimeFormat("es-ES", { month: "long", day: "numeric" })
 
 const Participant = ({ params, data }: PageProps<Participant>) => {
   return (
@@ -27,7 +28,7 @@ const Participant = ({ params, data }: PageProps<Participant>) => {
       </Head>
       <div className="mx-auto max-w-screen-sm flex flex-col w-full">
         <Header />
-        <div className="p-4">
+        <div className="p-4 w-full max-w-full">
           <p className="mt-8 mb-2 text-xl">Estadísticas para {data.name}:</p>
           <div className="flex items-center justify-center h-60 bg-black w-full">
             <p className="text-white">Se vienen cositas</p>
@@ -48,9 +49,7 @@ const Participant = ({ params, data }: PageProps<Participant>) => {
             return (
               <div className="flex py-4 items-center border-l border-r border-b border-black text-sm">
                 <div className="w-16 text-center flex-shrink-0">+{faul.points}</div>
-                <div className="w-28 flex-shrink-0">
-                  {dateString}
-                </div>
+                <div className="w-28 flex-shrink-0">{dateString}</div>
                 {faul.description ? (
                   <div className="flex-grow">{faul.description}</div>
                 ) : (
