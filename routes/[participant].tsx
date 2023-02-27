@@ -43,7 +43,7 @@ const Participant = ({ data }: PageProps<Participant>) => {
             </h3>
           </div>
           <div className="w-full flex gap-4 items-center text-sm">
-            <div>{data.fullName}</div>
+            <div className="flex items-center">{data.fullName}</div>
             <div className="flex gap-1 items-center">
               <Sign className="inline" /> {data.sign}
             </div>

@@ -11,6 +11,7 @@ import { Trophy } from "../components/icons/Trophy.tsx"
 export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
     const participants = await getAll()
+    console.log(participants)
     return ctx.render(participants)
   },
   POST: async (req, ctx) => {

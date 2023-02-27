@@ -1,5 +1,6 @@
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 import { Participant } from "../types/participant.ts"
+import { getFakeAllParticipants, getFakeParticipant } from "./fakeData.ts"
 
 const url = Deno.env.get("MONGO_URL")
 const key = Deno.env.get("MONGO_API_KEY")
@@ -18,7 +19,7 @@ const baseHeaders = {
 
 const getAll = async (): Promise<Array<Participant>> => {
   if (!url || !key) {
-    return []
+    return getFakeAllParticipants()
   }
 
   const config = {
@@ -36,7 +37,7 @@ const getAll = async (): Promise<Array<Participant>> => {
 
 const get = async (participant: string): Promise<Participant | undefined> => {
   if (!url || !key) {
-    return
+    return getFakeParticipant(participant)
   }
 
   const data = {
@@ -57,7 +58,7 @@ const get = async (participant: string): Promise<Participant | undefined> => {
 
 const updateParticipant = async (participant: string, points: number, description?: string) => {
   if (!url || !key) {
-    return []
+    return
   }
 
   const data = {
