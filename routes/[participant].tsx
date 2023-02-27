@@ -13,7 +13,6 @@ export const handler: Handlers<Participant> = {
     if (!participant) {
       return new Response("not found", { status: 404 })
     }
-    console.log(participant)
     return ctx.render(participant)
   },
 }
