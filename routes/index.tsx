@@ -6,6 +6,7 @@ import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts
 import ModalPrompt from "../islands/ModalPrompt.tsx"
 import Timer from "../islands/Timer.tsx"
 import { Header } from "../components/Header.tsx"
+import { Trophy } from "../components/icons/Trophy.tsx"
 
 export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
@@ -53,7 +54,7 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
               href={`/${data[0].name}`}
               className="flex items-center justify-center h-[100px] w-full border-1 border-black rounded-sm shadow-md px-4 gap-4"
             >
-              <img className="w-[50px] h-[50px]" src="./trophy.svg"></img>
+              <Trophy />
               <span className="flex-grow text-2xl font-semibold">{data[0].name}</span>
               <span>{getPointsFromParticipant(data[0])} pts</span>
             </a>

@@ -3,8 +3,9 @@ import { Head } from "$fresh/runtime.ts"
 import { get } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { Header } from "../components/Header.tsx"
-import DataChart from "../islands/DataChart.tsx"
 import { getStatisticsFromData } from "../utils/tools.ts"
+import { Sign } from "../components/icons/Sign.tsx"
+import { People } from "../components/icons/People.tsx"
 
 export const handler: Handlers<Participant> = {
   GET: async (req, ctx) => {
@@ -43,11 +44,11 @@ const Participant = ({ data }: PageProps<Participant>) => {
           </div>
           <div className="w-full flex gap-4 items-center text-sm">
             <div>{data.fullName}</div>
-            <div>
-              <img src="/sign.svg" className="inline" /> {data.sign}
+            <div className="flex gap-1 items-center">
+              <Sign className="inline" /> {data.sign}
             </div>
-            <div>
-              <img src="/people.svg" className="inline" /> {data.currentGirlfriends}
+            <div className="flex gap-1 items-center">
+              <People className="inline" /> {data.currentGirlfriends}
             </div>
           </div>
 

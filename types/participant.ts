@@ -12,3 +12,4 @@ export type Participant = {
   sign: string
   fauls: Array<Faul>
 }
+ 
