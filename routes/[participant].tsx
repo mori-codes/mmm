@@ -73,7 +73,7 @@ const Participant = ({ data }: PageProps<Participant>) => {
         </div>
 
         <div className="p-4">
-          <p className="mt-4 mb-2 text-xl">Historial:</p>
+          <p className="mt-4">Historial:</p>
           <div className="flex bg-black text-white font-bold">
             <div className="w-16 text-center">PTS</div>
             <div className="w-28">Fecha</div>
