@@ -22,7 +22,7 @@ export default function TimerIsland() {
   const { days, hours, minutes, seconds } = formatMillisecondsToExtendedTime(timeLeft)
 
   return (
-    <div className="text-xl grid grid-cols-2 grid-flow gap-1 flex-shrink-0">
+    <div className="text-lg grid grid-cols-2 grid-flow gap-1 flex-shrink-0">
       <div>
         <span className="font-bold">{days}</span> días
       </div>
