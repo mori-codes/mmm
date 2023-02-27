@@ -51,8 +51,8 @@ const Participant = ({ data }: PageProps<Participant>) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 mt-4 text-sm p-2 shadow-md">
-            <p className="text-xl w-[50%] text-center text-shadow">
+          <div className="flex items-center gap-4 mt-4 text-sm px-2 py-4 shadow-md">
+            <p className="text-xl w-[50%] text-center">
               Total de faltas: <span className={`font-bold ${color}`}>{total}</span>
             </p>
             <div>
