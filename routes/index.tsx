@@ -11,7 +11,6 @@ import { Trophy } from "../components/icons/Trophy.tsx"
 export const handler: Handlers<Array<Participant>> = {
   GET: async (_, ctx) => {
     const participants = await getAll()
-    console.log(participants)
     return ctx.render(participants)
   },
   POST: async (req, ctx) => {
@@ -46,7 +45,7 @@ export default function Home({ data }: PageProps<Array<Participant>>) {
         <Header />
         <div className="flex flex-col">
           <div className="px-2 py-4 flex items-center justify-between shadow-lg animate-slide-down bg-banner">
-            <p className="text-lg font-semibold">Empieza en:</p>
+            <p className="text-lg font-semibold">Termina en:</p>
             <Timer />
           </div>
           <div className="my-20 px-4">

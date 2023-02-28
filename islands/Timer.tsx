@@ -1,7 +1,7 @@
 import { useState, useEffect } from "preact/hooks"
 import { formatMillisecondsToExtendedTime, getDurationBetweenDates } from "../utils/tools.ts"
 
-const DAY_ZERO_ZERO_INSULT = "2023/03/01"
+const DAY_ZERO_ZERO_INSULT = "2023/04/01"
 
 export default function TimerIsland() {
   const [timeLeft, setTimeLeft] = useState(
