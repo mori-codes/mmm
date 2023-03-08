@@ -61,10 +61,7 @@ const Participant = ({ data }: PageProps<Participant>) => {
                 Porcentaje graves: <span className="font-bold">{severePercentage}%</span>
               </p>
               <p className="mb-2">
-                Día con más faltas:{" "}
-                <span className="font-bold">
-                  {worstDay ? formatter.format(worstDay) : "Desconocido"}
-                </span>
+                Día con más faltas: <span className="font-bold">{worstDay ?? "Desconocido"}</span>
               </p>
               <a href="#" className={`underline ${color}`}>
                 Ver más estadísticas &#62;

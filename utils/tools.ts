@@ -51,19 +51,21 @@ export function getStatisticsFromData(fauls: Participant["fauls"]) {
   // We'll group fauls per date
   const helper: Record<string, number> = {}
   let severe = 0
+  const formatter = new Intl.DateTimeFormat("es-ES", { month: "long", day: "numeric" })
 
   for (const faul of fauls) {
-    helper[faul.date] = helper[faul.date] ? helper[faul.date] + 1 : 1
+    const key = formatter.format(Number(faul.date))
+    helper[key] = helper[key] ? helper[key] + 1 : 1
     if (faul.points === 5) {
       severe++
     }
   }
 
-  let worstDay = fauls[0] ? fauls[0].date : undefined
+  let worstDay = fauls[0] ? formatter.format(Number(fauls[0].date)) : undefined
   let worstDayCount = 0
 
-  for(const [day, count] of Object.entries(helper)){
-    if(count > worstDayCount){
+  for (const [day, count] of Object.entries(helper)) {
+    if (count > worstDayCount) {
       worstDay = day
       worstDayCount = count
     }
@@ -71,7 +73,7 @@ export function getStatisticsFromData(fauls: Participant["fauls"]) {
 
   return {
     total: fauls.length,
-    severePercentage: Math.floor(severe * 100 / fauls.length),
-    worstDay: worstDay ? new Date(Number(worstDay)) : undefined
+    severePercentage: Math.floor((severe * 100) / fauls.length),
+    worstDay: worstDay ? worstDay : undefined,
   }
 }
