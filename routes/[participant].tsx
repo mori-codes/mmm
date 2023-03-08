@@ -89,7 +89,7 @@ const Participant = ({ data }: PageProps<Participant>) => {
                 <div className="w-16 text-center flex-shrink-0">+{faul.points}</div>
                 <div className="w-28 flex-shrink-0">{dateString}</div>
                 {faul.description ? (
-                  <div className="flex-grow">{faul.description}</div>
+                  <div className="flex-grow pr-2">{faul.description}</div>
                 ) : (
                   <div className="flex-grow text-grey italic">Sin descripcion</div>
                 )}
