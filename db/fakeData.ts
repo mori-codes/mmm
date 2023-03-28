@@ -27,7 +27,7 @@ const fakeParticipants: Array<Participant> = [
       },
       { points: 5, description: "", date: "1676925006372" },
       { points: 3, description: "21 de febrero? PeepoWide", date: "1676980998820" },
-      { points: 5, description: "La Cañada es peste", date: "1676989114964" },
+      { points: 5, description: "PG es peste", date: "1676989114964" },
       { points: 5, description: "Ghijk", date: "1677354017265" },
       { points: 5, description: "Morillo warro 😶‍🌫️", date: "1677495537000" },
     ],
