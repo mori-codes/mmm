@@ -4,7 +4,7 @@ import { getAll, updateParticipant } from "../db/participants.ts"
 import { Participant } from "../types/participant.ts"
 import { getPointsFromParticipant } from "../helpers/getPointsFromParticipant.ts"
 import ModalPrompt from "../islands/ModalPrompt.tsx"
-import Timer from "../islands/Timer.tsx"
+import Confetti from "../islands/Confetti.tsx"
 import { Header } from "../components/Header.tsx"
 import { Trophy } from "../components/icons/Trophy.tsx"
 
@@ -38,17 +38,18 @@ export const handler: Handlers<Array<Participant>> = {
 export default function Home({ data }: PageProps<Array<Participant>>) {
   return (
     <>
+      <Confetti />
       <Head>
         <title>MMM Official Site</title>
       </Head>
       <div className="mx-auto max-w-screen-sm h-screen flex flex-col w-full">
         <Header />
         <div className="flex flex-col">
-          <div className="px-2 py-4 flex items-center justify-between shadow-lg animate-slide-down bg-banner">
-            <p className="text-lg font-semibold">Termina en:</p>
-            <Timer />
+          <div className="my-5 text-center">
+            <p className="text-3xl font-semibold">¡Enhorabuena Toca!</p>
+            <p>Por ser el amigo menos malo</p>
           </div>
-          <div className="my-20 px-4">
+          <div className="mb-20 px-4">
             <p>Clasificación: </p>
             <a
               href={`/${data[0].name}`}

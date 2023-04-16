@@ -18,11 +18,11 @@ const ModalPrompt = ({ password }: Props) => {
 
   return (
     <>
-      <Button variant="Alvilux" onClick={() => setSelectedParticipant("Alvilux")}>
-        Alvilux
+      <Button variant="Alvilux" onClick={() => setSelectedParticipant("Alvilux")} disabled>
+        Fin de la competición
       </Button>
-      <Button variant="Toca" onClick={() => setSelectedParticipant("Toca")} className="mt-4">
-        Toca
+      <Button variant="Toca" onClick={() => setSelectedParticipant("Toca")} className="mt-4" disabled>
+        Hasta el año que viene 😁
       </Button>
       <Modal
         open={selectedParticipant !== undefined}
